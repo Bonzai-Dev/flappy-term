@@ -1,10 +1,10 @@
-import Viewport from "./viewport";
+import Game from "./game";
 import GameObject from "./GameObject";
 import Vector2 from "@equinor/videx-vector2";
 
 export default class Player extends GameObject {
-  constructor(viewport: Viewport, position: Vector2) {
+  constructor() {
     const sprite = "🐦";
-    super(sprite, position);
+    super(sprite);
   }
 }
