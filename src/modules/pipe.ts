@@ -1,5 +1,6 @@
 import Vector2 from "@equinor/videx-vector2";
 import Game from "./game";
+import GameObject from "./GameObject";
 
 export default class Pipe {
   readonly gap = 3;

@@ -4,7 +4,7 @@ import Vector2 from "@equinor/videx-vector2";
 
 export default class Player extends GameObject {
   constructor() {
-    const sprite = "🐦";
+    const sprite = ">";
     super(sprite);
   }
 }

@@ -45,7 +45,7 @@ export default class Game {
       this.screen.clear();
       
       player.position.y += 0.15;
-      // player.draw(this, player.position);
+      player.draw(this, player.position);
 
       pipe.draw(this, pipe.position);
       
