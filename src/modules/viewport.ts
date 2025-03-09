@@ -1,39 +1,30 @@
 import { terminal, ScreenBufferHD } from "terminal-kit";
 import Vector2 from "@equinor/videx-vector2";
+import Player from "./player";
 
 export default class Viewport {
-  private screen = new ScreenBufferHD({
+  screen = new ScreenBufferHD({
     dst: terminal,
+    noFill: false,
     width: terminal.width,
     height: terminal.height,
   });
 
-  private increment = 0;
-
   constructor() {
-    // // Resize the screen buffer when the terminal is resized
-    // terminal.on("resize", () => {
-    //   this.screen.resize({
-    //     width: terminal.width,
-    //     height: terminal.height
-    //   });
-    // });
+    const player = new Player(this, new Vector2(0, 0));
 
-    // Drawing on the screen buffer
+    terminal.on("exit", () => {
+      terminal.reset();
+    });
+    
+    // Draws each frame
     setInterval(() => {
       this.screen.clear();
 
-      const center = this.center;
-      const x = center.x;
-      const y = center.y;
+      player.draw(this);
 
-      this.screen.put(
-        { x, y, attr: {}, wrap: false, dx: 0, dy: 0 },
-        this.increment.toString()
-      );
-      this.increment++;
-      this.screen.draw();
-    }, 1000);
+      this.screen.draw({ delta: true });
+    }, 1 / 60);
   }
 
   get center(): Vector2 {
