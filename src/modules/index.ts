@@ -1,3 +1,4 @@
-import Viewport from "./game";
+import Game from "@/modules/game";
+import GameObjects from "@/modules/gameObjects";
 
-export { Viewport };
+export { Game, GameObjects };

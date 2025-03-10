@@ -4,6 +4,10 @@
     "moduleResolution": "nodenext",
     "target": "ES2022",
     "outDir": "dist",
+    "baseUrl": ".", 
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": ["src/**/*"],
 }

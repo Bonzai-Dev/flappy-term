@@ -1,13 +1,13 @@
-import { ScreenBufferHD } from "terminal-kit";
 import Vector2 from "@equinor/videx-vector2";
-import Game from "./game";
+import Game from "@/modules/game";
 
 export default abstract class GameObject {
   position = new Vector2(0, 0);
   sprite: string;
 
-  constructor(sprite: string) {
+  constructor(sprite: string, position: Vector2) {
     this.sprite = sprite;
+    this.position = position;
   }
 
   draw(game: Game, position: Vector2) {
