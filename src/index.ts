@@ -4,19 +4,17 @@ import { Inputs, GameSettings } from "@/config";
 import { Controls } from "@/utils";
 
 const game = new Game();
+const player = new GameObjects.Player(new Vector2(game.screenCenter.x / 2, game.screenCenter.y), game);
 
-const pipe = new GameObjects.Pipe(game);
-pipe.position = new Vector2(game.screenCenter.x, game.screenCenter.y);
+let pipe = new GameObjects.Pipe(game, new Vector2(game.screen.width, 0));
 
-const player = new GameObjects.Player(new Vector2(game.screenCenter.x / 2, game.screenCenter.y));
+game.events.on("tick", async (deltaTime: number) => {  
+  if (pipe.position.x < game.screen.width - GameSettings.pipes.pipeGaps) {
+    pipe = new GameObjects.Pipe(game, new Vector2(game.screen.width, 0));
+  }
 
-game.tick = () => {
-  player.position.y += GameSettings.gravity;
-  player.draw(game, player.position);
-  pipe.draw(game, pipe.position);
-};
+});
 
-// TODO: Instead of detecting hold, detect tap
 Controls.keyDown(Inputs.up, () => {
   player.jump();
 });

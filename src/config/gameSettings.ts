@@ -1,14 +1,20 @@
 const GameSettings = {
   gravity: 0.2,
-  speed: 1,
+  
+  gameStates: {
+    running: "running",
+    gameOver: "gameOver",
+  },
 
   player: {
-    jumpHeight: 2.5,
+    jumpHeight: 3,
     sprite: ">"    
   }, 
-
+  
   pipes: {
-    gap: 3,
+    speed: 0.2,
+    pipeGaps: 20,
+    holeSize: 5,
     width: 2,
     sprite: "#"
   }

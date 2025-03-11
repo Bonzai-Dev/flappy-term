@@ -4,19 +4,22 @@ import GameObject from "@/modules/gameObjects/gameObject";
 import { GameSettings } from "@/config";
 
 export default class Pipe extends GameObject {
-  readonly gap = GameSettings.pipes.gap;
+  readonly gap = GameSettings.pipes.holeSize;
   readonly width = GameSettings.pipes.width;
-  position = new Vector2(0, 0);
-  
   private gapPosition = 0; 
 
-  constructor(game: Game) { 
-    super("", new Vector2(0, 0));
+  constructor(game: Game, position: Vector2) { 
+    super("", position, game);
 
     // Gets the bottom of the gap position
     // Minimum is expected to be 0
     // Maximum is expected to be the height of the screen minus the gap
     this.gapPosition = Math.floor(Math.random() * (game.screen.height - this.gap + 1));
+
+    game.events.on("tick", () => {
+      this.position.x -= GameSettings.pipes.speed;
+      this.draw(game, this.position);
+    });
   }
   
   override draw(game: Game, position: Vector2) {

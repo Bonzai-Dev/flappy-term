@@ -11,6 +11,8 @@ export function keyDown(keyMap: { [key: string]: string }, callback: (keyName: s
       }
     }
   });
+  
+  terminal.removeListener("key", keyDown); // THIS NO GOOD BUDDY
 }
 
 export default { keyDown };
