@@ -1,6 +1,5 @@
 import Vector2 from "@equinor/videx-vector2";
 import Game from "@/modules/game";
-import { Math } from "@/utils";
 
 export default abstract class GameObject {
   position = new Vector2(0, 0);
@@ -18,9 +17,5 @@ export default abstract class GameObject {
     );
 
     this.position = position;
-  }
-
-  protected moveTo(to: Vector2, t: number) {
-    Math.lerpVector(this.position, to, t);
   }
 }

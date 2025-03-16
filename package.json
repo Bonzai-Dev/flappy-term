@@ -1,5 +1,5 @@
 {
-  "name": "flappybird-cli",
+  "name": "flappy-term",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
