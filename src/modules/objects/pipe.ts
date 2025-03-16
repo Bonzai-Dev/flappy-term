@@ -7,7 +7,7 @@ import GameSettings from "@/config";
 export default class Pipe extends Object {
   readonly gap = Objects.pipes.holeSize;
   readonly width = Objects.pipes.width;
-  gapPosition = 0;
+  private gapPosition = 0;
   playerInGap = false;
 
   constructor(game: Game, position: Vector2) {
@@ -20,6 +20,11 @@ export default class Pipe extends Object {
     this.gapPosition = Math.floor(
       Math.random() * (game.screen.height - this.gap - GameSettings.textGap - 1)
     ) + GameSettings.textGap + 1;
+
+    game.events.on("tick", () => {
+      this.position.x -= Objects.pipes.speed;
+      this.draw(game, this.position);
+    });
   }
 
   override draw(game: Game, position: Vector2) {
@@ -38,5 +43,9 @@ export default class Pipe extends Object {
         );
       }
     }
+  }
+
+  get getGapPosition(): number {
+    return this.gapPosition;
   }
 }

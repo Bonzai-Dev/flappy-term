@@ -38,7 +38,7 @@ export default class Player extends Object {
   colliding(pipe: Pipe): boolean {
     if (this.position.x >= pipe.position.x && this.position.x < pipe.position.x + pipe.width) 
       // Checks if the player is within the gap
-      if (this.position.y < pipe.gapPosition || this.position.y >= pipe.gapPosition + pipe.gap)
+      if (this.position.y < pipe.getGapPosition || this.position.y >= pipe.getGapPosition + pipe.gap)
         return true;
   
     return false;
@@ -46,7 +46,7 @@ export default class Player extends Object {
 
   inGap(pipe: Pipe): boolean {
     if (this.position.x >= pipe.position.x + pipe.width && !pipe.playerInGap)
-      if (!(this.position.y < pipe.gapPosition || this.position.y >= pipe.gapPosition + pipe.gap)) {
+      if (!(this.position.y < pipe.getGapPosition || this.position.y >= pipe.getGapPosition + pipe.gap)) {
         pipe.playerInGap = true;
         return true;
       }
