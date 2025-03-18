@@ -1,13 +1,16 @@
 import Vector2 from "@equinor/videx-vector2";
-import Game from "@/modules/game";
+import Game from "@modules/game";
 
 export default abstract class GameObject {
-  position = new Vector2(0, 0);
-  sprite: string;
+  protected tick: () => void;
+  protected position = new Vector2(0, 0);
+  protected sprite: string;
+  protected game: Game;
 
-  constructor(sprite: string, position: Vector2, protected game: Game) {
+  constructor(sprite: string, position: Vector2, game: Game) {
     this.sprite = sprite;
     this.position = position;
+    this.game = game;
   }
 
   draw(game: Game, position: Vector2) {
@@ -17,5 +20,13 @@ export default abstract class GameObject {
     );
 
     this.position = position;
+  }
+
+  destroy() {
+    this.game.events.off("tick", this.tick);
+  }
+
+  get getPosition(): Vector2 {
+    return this.position;
   }
 }

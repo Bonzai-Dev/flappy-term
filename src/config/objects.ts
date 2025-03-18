@@ -3,6 +3,8 @@ const Objects = {
     jumpHeight: 3,
     sprite: ">",
     deadzone: 2,    
+    mass: 10,
+    maxVelocity: 0.3
   }, 
   
   pipes: {

@@ -1,10 +1,11 @@
 import { terminal, ScreenBufferHD } from "terminal-kit";
+import { version } from "../../package.json";
 import { EventEmitter } from "events";
 import Vector2 from "@equinor/videx-vector2";
-import GameSettings from "@/config";
-import Objects from "@/config/objects";
-import Pipe from "@/modules/objects/pipe";
-import Player from "@/modules/objects/player";
+import GameSettings from "@config/index";
+import Objects from "@config/objects";
+import Pipe from "@modules/objects/pipe"; 
+import Player from "@modules/objects/player";
 
 export default class Game {
   readonly screen = new ScreenBufferHD({
@@ -34,30 +35,36 @@ export default class Game {
       this.tick();
       this.events.emit("tick");
 
-      this.drawBorderLine(GameSettings.textGap);
-      this.drawBorderLine(this.screen.height - 1);
-
-      this.drawText(`Score: ${this.score}`, new Vector2(0, 0));
-
       this.screen.draw({ delta: true });
     }, 1000 / 60);
   }
 
   tick() {
+    this.drawBorderLine(GameSettings.textGap);
+    this.drawBorderLine(this.screen.height - 1);
+
+    const titleCenter = this.getScreenCenter.x - Math.floor(GameSettings.title.length / 2);
+    const versionCenter = this.getScreenCenter.x - Math.floor(version.length / 2);
+    this.drawText(GameSettings.title, new Vector2(titleCenter, 0));
+    this.drawText("v" + version, new Vector2(versionCenter, 1));
+    this.drawText(`Score: ${this.score}`, new Vector2(0, 1));
+
     for (let i = 0; i < this.pipes.length; i++) {
       const pipe = this.pipes[i];
 
-      if (pipe.position.x < 0) 
+      if (pipe.getPosition.x < 0) {
         this.pipes.splice(i, 1);
-      else if (this.pipes[this.pipes.length - 1].position.x < this.screen.width - Objects.pipes.pipeGaps)
+        pipe.destroy();
+      } else if (this.pipes[this.pipes.length - 1].getPosition.x < this.screen.width - Objects.pipes.pipeGaps) {
         this.pipes.push(new Pipe(this, new Vector2(this.screen.width, 0)));
-      
+      }
+
       if (this.player.colliding(pipe)) 
         this.terminate();
       else if (this.player.inGap(pipe))
         this.score++;
       
-      if (this.player.position.y > this.screen.height + Objects.player.deadzone) 
+      if (this.player.getPosition.y > this.screen.height + Objects.player.deadzone) 
         this.terminate();
     }
   }

@@ -1,5 +1,5 @@
 import { terminal } from "terminal-kit";
-import Game from "@/modules/game";
+import Game from "@modules/game";
 
 const game = new Game();
 terminal.on("key", (name: string) => {

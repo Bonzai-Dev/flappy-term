@@ -3,11 +3,15 @@
     "module": "NodeNext",
     "moduleResolution": "nodenext",
     "target": "ES2022",
-    "outDir": "dist",
-    "baseUrl": ".", 
+    "rootDir": "src",
+    "outDir": "./dist",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@config/*": ["src/config/*"],
+      "@modules/*": ["src/modules/*"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*"]
 }
