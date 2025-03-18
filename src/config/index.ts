@@ -4,7 +4,7 @@ const GameSettings = {
   title: "Flappy Term",
   textGap: 2,
   windowSize: new Vector2(80, 20),
-  gravity: 0.3,
+  gravity: 0.15,
 };
 
 export default GameSettings;
