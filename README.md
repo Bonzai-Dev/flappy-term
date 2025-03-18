@@ -22,6 +22,13 @@ Then run this command to play the game.
   npm run start
 ```
 
+## Installation
+```bash
+git clone https://github.com/Bonzai-Dev/flappy-term.git
+cd flappy-term
+node index.js
+```
+
 ## Building
 
 ```bash
