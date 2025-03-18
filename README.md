@@ -3,6 +3,9 @@
 
 What is this? Well Flappy Term is a remake of the famous game flappy bird in the terminal, made in TypeScript.
 
+## Known issues
+The app is known to not work with the windows terminal when you ssh into a linux machine. Use another ssh client if needed.
+
 ## Controls
 
 Space and up arrow to jump
