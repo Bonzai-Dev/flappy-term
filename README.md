@@ -26,6 +26,8 @@ Then run this command to play the game.
 ```bash
 git clone https://github.com/Bonzai-Dev/flappy-term.git
 cd flappy-term
+npm run build
+cd dist
 node index.js
 ```
 
